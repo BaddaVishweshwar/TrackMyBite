@@ -1,0 +1,1024 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Track meals, create personalizedhåll diet plans, and live healthier with NutriVibe Tracker. Start your nutrition journey today!">
+  <!-- Open Graph Meta Tags -->
+  <meta property="og:title" content="NutriVibe Tracker - Your Nutrition Journey Starts Here">
+  <meta property="og:description" content="Track your meals, create personalized diet plans, and cultivate a vibrant, healthy life with NutriVibe Tracker.">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://www.nutrivibetracker.com/">
+  <meta property="og:image" content="https://images.unsplash.com/photo-1498837167922-ddd27525d352?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80">
+  <meta property="og:site_name" content="NutriVibe Tracker">
+  <meta property="og:locale" content="en_US">
+  <meta property="og:updated_time" content="2025-05-12T08:00:00Z">
+  <!-- Last-Modified Meta Tag -->
+  <meta http-equiv="last-modified" content="Mon, 12 May 2025 08:00:00 GMT">
+  <title>NutriVibe Tracker</title>
+  <link id="canonicalLink" rel="canonical" href="https://www.nutrivibetracker.com/">
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&family=Playfair+Display:wght@700&display=swap" rel="stylesheet">
+  <!-- Schema.org Structured Data -->
+  <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@graph": [
+        {
+          "@type": "WebSite",
+          "name": "NutriVibe Tracker",
+          "url": "https://www.nutrivibetracker.com/",
+          "potentialAction": {
+            "@type": "SearchAction",
+            "target": "https://www.nutrivibetracker.com/search?q={search_term_string}",
+            "query-input": "required name=search_term_string"
+          },
+          "publisher": {
+            "@type": "Organization",
+            "name": "NutriVibe Tracker",
+            "url": "https://www.nutrivibetracker.com/",
+            "logo": {
+              "@type": "ImageObject",
+              "url": "https://images.unsplash.com/photo-1498837167922-ddd27525d352?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
+              "width": 800,
+              "height": 533
+            },
+            "contactPoint": {
+              "@type": "ContactPoint",
+              "email": "hello@nutrivibe.com",
+              "contactType": "Customer Service"
+            }
+          }
+        },
+        {
+          "@type": "WebPage",
+          "url": "https://www.nutrivibetracker.com/",
+          "name": "NutriVibe Tracker - Your Nutrition Journey Starts Here",
+          "description": "Track your meals, create personalized diet plans, and cultivate a vibrant, healthy life with NutriVibe Tracker.",
+          "isPartOf": {
+            "@id": "https://www.nutrivibetracker.com/#website"
+          },
+          "primaryImageOfPage": {
+            "@type": "ImageObject",
+            "url": "https://images.unsplash.com/photo-1498837167922-ddd27525d352?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
+            "width": 800,
+            "height": 533
+          },
+          "inLanguage": "en-US"
+        }
+      ]
+    }
+  </script>
+  <style>
+    body {
+      font-family: 'Inter', sans-serif;
+      background: linear-gradient(135deg, #fef3c7, #d1fae5);
+      position: relative;
+      overflow-x: hidden;
+    }
+    .header {
+      background: linear-gradient(90deg, #f97316, #a855f7);
+      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    }
+    .nav-link {
+      transition: color 0.3s;
+    }
+    .nav-link:hover {
+      color: #fef3c7;
+    }
+    .btn {
+      transition: transform 0.2s, background-color 0.3s;
+    }
+    .btn:hover {
+      transform: scale(1.05);
+    }
+    .progress-bar {
+      background: #e5e7eb;
+      border-radius: 8px;
+      overflow: hidden;
+      height: 16px;
+    }
+    .progress {
+      background: #22c55e;
+      height: 100%;
+      transition: width 0.5s ease-in-out;
+    }
+    .fade-in {
+      animation: fadeIn 0.5s ease-in;
+    }
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(10px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+    .page {
+      display: none;
+    }
+    .page-active {
+      display: block;
+    }
+    .footer {
+      background: #1f2937;
+    }
+    .leaf {
+      position: absolute;
+      width: 20px;
+      height: 20px;
+      background: rgba(34, 197, 94, 0.3);
+      clip-path: polygon(50% 0%, 0% 100%, 100% 100%);
+      animation: fall 10s linear infinite;
+      z-index: -1;
+    }
+    @keyframes fall {
+      0% { transform: translateY(-100vh) rotate(0deg); }
+      100% { transform: translateY(100vh) rotate(360deg); }
+    }
+    .carousel {
+      display: flex;
+      overflow-x: auto;
+      scroll-snap-type: x mandatory;
+      scrollbar-width: none;
+    }
+    .carousel::-webkit-scrollbar {
+      display: none;
+    }
+    .carousel-item {
+      flex: 0 0 100%;
+      scroll-snap-align: start;
+    }
+    .history-item {
+      transition: background-color 0.3s;
+    }
+    .history-item:hover {
+      background-color: #f3f4f6;
+    }
+    .diet-plan-table th, .diet-plan-table td {
+      border: 1px solid #e5e7eb;
+      padding: 8px;
+      text-align: left;
+    }
+    .meal-image {
+      width: 100px;
+      height: 100px;
+      object-fit: cover;
+      border-radius: 8px;
+      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    }
+    .tips-section {
+      border-top: 2px solid #22c55e;
+      padding-top: 1rem;
+    }
+    .error-message {
+      color: #ef4444;
+      font-size: 0.875rem;
+      margin-top: 0.25rem;
+    }
+    @media (max-width: 768px) {
+      .nav-menu {
+        position: fixed;
+        top: 0;
+        right: -100%;
+        height: 100%;
+        width: 75%;
+        background: #f97316;
+        transition: right 0.3s ease;
+      }
+      .nav-menu-active {
+        right: 0;
+      }
+      .meal-image {
+        width: 60px;
+        height: 60px;
+      }
+      .diet-plan-table {
+        font-size: 0.875rem;
+      }
+    }
+  </style>
+</head>
+<body class="min-h-screen flex flex-col">
+  <!-- Animated Background Leaves -->
+  <div class="leaf" style="left: 10%; animation-delay: 0s;"></div>
+  <div class="leaf" style="left: 30%; animation-delay: 2s;"></div>
+  <div class="leaf" style="left: 50%; animation-delay: 4s;"></div>
+  <div class="leaf" style="left: 70%; animation-delay: 6s;"></div>
+  <div class="leaf" style="left: 90%; animation-delay: 8s;"></div>
+
+  <!-- Header -->
+  <header class="header sticky top-0 z-50 p-4 flex justify-between items-center text-white">
+    <h1 class="text-2xl font-bold font-['Playfair_Display']">NutriVibe 🌿</h1>
+    <nav class="hidden md:flex space-x-6">
+      <a href="#" class="nav-link font-semibold" data-page="home">Home</a>
+      <a href="#" class="nav-link font-semibold" data-page="tracker">Tracker</a>
+      <a href="#" class="nav-link font-semibold" data-page="diet-plan">Diet Plan</a>
+      <a href="#" class="nav-link font-semibold" data-page="about">About</a>
+    </nav>
+    <button id="menuToggle" class="md:hidden focus:outline-none">
+      <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path></svg>
+    </button>
+    <nav id="mobileMenu" class="nav-menu flex flex-col space-y-4 p-6 text-white md:hidden">
+      <button id="closeMenu" class="self-end focus:outline-none">
+        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path></svg>
+      </button>
+      <a href="#" class="nav-link font-semibold" data-page="home">Home</a>
+      <a href="#" class="nav-link font-semibold" data-page="tracker">Tracker</a>
+      <a href="#" class="nav-link font-semibold" data-page="diet-plan">Diet Plan</a>
+      <a href="#" class="nav-link font-semibold" data-page="about">About</a>
+    </nav>
+  </header>
+
+  <!-- Main Content -->
+  <main class="flex-1 p-6">
+    <!-- Home Page -->
+    <section id="home" class="page page-active">
+      <div class="max-w-4xl mx-auto text-center">
+        <h2 class="text-4xl md:text-5xl font-bold font-['Playfair_Display'] text-orange-600 mb-4 fade-in">Bloom with NutriVibe! 🍎</h2>
+        <p class="text-lg text-gray-600 mb-8">Track your meals, create a personalized diet plan, and cultivate a vibrant, healthy life!</p>
+        <img src="https://images.unsplash.com/photo-1498837167922-ddd27525d352?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Healthy Food" class="w-full h-64 md:h-96 object-cover rounded-lg mb-8 shadow-md">
+        <a href="#" data-page="tracker" class="inline-block bg-orange-500 text-white py-3 px-8 rounded-full font-semibold btn">Start Your Journey 🌱</a>
+        <div class="mt-12">
+          <h3 class="text-2xl font-semibold text-orange-600 mb-4">Why Track Your Nutrition? 🥗</h3>
+          <div class="grid md:grid-cols-3 gap-6 mb-12">
+            <div class="bg-white p-6 rounded-lg shadow-md">
+              <h4 class="text-lg font-semibold text-orange-600 mb-2">Boost Energy</h4>
+              <p class="text-gray-600">Balanced meals fuel your day with sustained energy.</p>
+            </div>
+            <div class="bg-white p-6 rounded-lg shadow-md">
+              <h4 class="text-lg font-semibold text-orange-600 mb-2">Stay Mindful</h4>
+              <p class="text-gray-600">Tracking helps you make conscious food choices.</p>
+            </div>
+            <div class="bg-white p-6 rounded-lg shadow-md">
+              <h4 class="text-lg font-semibold text-orange-600 mb-2">Reach Goals</h4>
+              <p class="text-gray-600">Monitor progress toward your health objectives.</p>
+            </div>
+          </div>
+          <h3 class="text-2xl font-semibold text-orange-600 mb-4">Nutrition Tips 🍇</h3>
+          <div class="carousel mb-12">
+            <div class="carousel-item p-4 bg-white rounded-lg shadow-md mx-2">
+              <p class="text-gray-600">Incorporate a variety of colorful veggies for diverse nutrients! 🥕</p>
+            </div>
+            <div class="carousel-item p-4 bg-white rounded-lg shadow-md mx-2">
+              <p class="text-gray-600">Swap sugary drinks for herbal teas or infused water! 💧</p>
+            </div>
+            <div class="carousel-item p-4 bg-white rounded-lg shadow-md mx-2">
+              <p class="text-gray-600">Opt for whole grains to keep you full longer. 🍞</p>
+            </div>
+          </div>
+          <h3 class="text-2xl font-semibold text-orange-600 mb-4">Featured Recipe: Quinoa Veggie Bowl 🥙</h3>
+          <div class="bg-white p-6 rounded-lg shadow-md">
+            <p class="text-gray-600 mb-2">A nutrient-packed bowl with quinoa, roasted veggies, avocado, and a tahini drizzle. Perfect for lunch!</p>
+            <p class="text-gray-600"><strong>Prep Time:</strong> 20 mins | <strong>Calories:</strong> ~350 kcal</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Tracker Page -->
+    <section id="tracker" class="page">
+      <div class="max-w-2xl mx-auto bg-white rounded-2xl shadow-lg p-8">
+        <h2 class="text-3xl font-bold font-['Playfair_Display'] text-orange-600 mb-6">Diet Tracker 🍊</h2>
+        <div class="mb-6">
+          <label class="block text-sm font-medium text-gray-700 mb-2">Upload Food Image 📸</label>
+          <input type="file" id="foodImage" accept="image/*" class="block w-full text-sm text-gray-500 file:mr-4 file:py-3 file:px-6 file:rounded-full file:border-0 file:text-sm file:font-semibold file:bg-orange-100 file:text-orange-700 hover:file:bg-orange-200">
+        </div>
+        <div id="imagePreview" class="mb-6 hidden">
+          <img id="previewImg" class="w-full h-64 object-cover rounded-lg shadow-md" alt="Food Preview">
+        </div>
+        <button id="analyzeBtn" class="w-full bg-orange-500 text-white py-3 rounded-full font-semibold btn hover:bg-orange-600 disabled:bg-gray-400 disabled:cursor-not-allowed" disabled>Analyze Dish 🥗</button>
+        <div id="nutritionInfo" class="mt-6 hidden fade-in">
+          <h3 class="text-xl font-semibold text-orange-600">Dish Nutrition 🍴</h3>
+          <p><strong>Calories:</strong> <span id="calories"></span> kcal</p>
+          <p><strong>Protein:</strong> <span id="protein"></span> g</p>
+          <p><strong>Carbs:</strong> <span id="carbs"></span> g</p>
+          <p><strong>Fat:</strong> <span id="fat"></span> g</p>
+        </div>
+        <div id="dailySummary" class="mt-6">
+          <div class="flex justify-between items-center mb-4">
+            <h3 class="text-xl font-semibold text-orange-600">Daily Harvest 🌾</h3>
+            <button id="resetProgress" class="bg-purple-500 text-white px-4 py-2 rounded-full text-sm font-semibold btn hover:bg-purple-600">Refresh Progress 🔄</button>
+          </div>
+          <p><strong>Calories:</strong> <span id="totalCalories">0</span> / 2000 kcal 🍉</p>
+          <div class="progress-bar mt-2"><div class="progress" id="caloriesProgress" style="width: 0%"></div></div>
+          <p><strong>Protein:</strong> <span id="totalProtein">0</span> / 100 g 🥚</p>
+          <div class="progress-bar mt-2"><div class="progress" id="proteinProgress" style="width: 0%"></div></div>
+          <p><strong>Carbs:</strong> <span id="totalCarbs">0</span> / 250 g 🍞</p>
+          <div class="progress-bar mt-2"><div class="progress" id="carbsProgress" style="width: 0%"></div></div>
+          <p><strong>Fat:</strong> <span id="totalFat">0</span> / 70 g 🧈</p>
+          <div class="progress-bar mt-2"><div class="progress" id="fatProgress" style="width: 0%"></div></div>
+        </div>
+        <div id="mealSuggestion" class="mt-6 hidden fade-in">
+          <h3 class="text-xl font-semibold text-orange-600">Meal Ideas 💡</h3>
+          <p><strong>Vegetarian:</strong> <span id="vegSuggestion"></span></p>
+          <p><strong>Non-Vegetarian:</strong> <span id="nonVegSuggestion"></span></p>
+        </div>
+        <div id="history" class="mt-6">
+          <h3 class="text-xl font-semibold text-orange-600 mb-4">Calorie History 📊</h3>
+          <div id="historyList" class="space-y-2"></div>
+        </div>
+        <div id="nutritionInsights" class="mt-6">
+          <h3 class="text-xl font-semibold text-orange-600 mb-4">Nutrition Insights 🌟</h3>
+          <div class="space-y-4">
+            <div class="bg-gray-50 p-4 rounded-lg">
+              <h4 class="text-lg font-semibold text-orange-600">Mindful Eating</h4>
+              <p class="text-gray-600">Chew slowly and savor each bite to enhance digestion and satisfaction.</p>
+            </div>
+            <div class="bg-gray-50 p-4 rounded-lg">
+              <h4 class="text-lg font-semibold text-orange-600">Portion Control</h4>
+              <p class="text-gray-600">Use smaller plates to naturally reduce portion sizes without feeling deprived.</p>
+            </div>
+            <div class="bg-gray-50 p-4 rounded-lg">
+              <h4 class="text-lg font-semibold text-orange-600">Balanced Diet</h4>
+              <p class="text-gray-600">Aim for a plate with 50% veggies, 25% protein, and 25% whole grains.</p>
+            </div>
+          </div>
+        </div>
+        <div id="motivation" class="mt-6 text-center text-gray-600 italic"></div>
+      </div>
+    </section>
+
+    <!-- Diet Plan Page -->
+    <section id="diet-plan" class="page">
+      <div class="max-w-4xl mx-auto bg-white rounded-2xl shadow-lg p-8">
+        <h2 class="text-3xl font-bold font-['Playfair_Display'] text-orange-600 mb-6">Personalized Diet Plan 📋</h2>
+        <div class="mb-6">
+          <h3 class="text-xl font-semibold text-orange-600 mb-4">Create Your Plan 🌿</h3>
+          <div id="formErrors" class="hidden mb-4 p-4 bg-red-100 text-red-700 rounded-lg"></div>
+          <div class="grid md:grid-cols-2 gap-4">
+            <div>
+              <label class="block text-sm font-medium text-gray-700 mb-1">Current Weight (kg)</label>
+              <input type="number" id="currentWeight" class="w-full p-2 border rounded" placeholder="e.g., 80" required>
+              <p id="currentWeightError" class="error-message hidden"></p>
+            </div>
+            <div>
+              <label class="block text-sm font-medium text-gray-700 mb-1">Target Weight (kg)</label>
+              <input type="number" id="targetWeight" class="w-full p-2 border rounded" placeholder="e.g., 70" required>
+              <p id="targetWeightError" class="error-message hidden"></p>
+            </div>
+            <div>
+              <label class="block text-sm font-medium text-gray-700 mb-1">Height (cm)</label>
+              <input type="number" id="height" class="w-full p-2 border rounded" placeholder="e.g., 170" required>
+              <p id="heightError" class="error-message hidden"></p>
+            </div>
+            <div>
+              <label class="block text-sm font-medium text-gray-700 mb-1">Age</label>
+              <input type="number" id="age" class="w-full p-2 border rounded" placeholder="e.g., 30" required>
+              <p id="ageError" class="error-message hidden"></p>
+            </div>
+            <div>
+              <label class="block text-sm font-medium text-gray-700 mb-1">Months to Goal</label>
+              <input type="number" id="timeline" class="w-full p-2 border rounded" placeholder="e.g., 6" required>
+              <p id="timelineError" class="error-message hidden"></p>
+            </div>
+            <div>
+              <label class="block text-sm font-medium text-gray-700 mb-1">Diet Preference</label>
+              <select id="dietPreference" class="w-full p-2 border rounded" required>
+                <option value="vegetarian">Vegetarian</option>
+                <option value="nonVegetarian">Non-Vegetarian</option>
+                <option value="eggVegetarian">Egg & Vegetarian</option>
+              </select>
+              <p id="dietPreferenceError" class="error-message hidden"></p>
+            </div>
+          </div>
+          <button id="generatePlan" class="mt-4 w-full bg-green-500 text-white py-3 rounded-full font-semibold btn hover:bg-green-600 disabled:bg-gray-400 disabled:cursor-not-allowed">Generate Diet Plan 🌿</button>
+        </div>
+        <div id="dietPlan" class="mt-6 hidden fade-in">
+          <h3 class="text-xl font-semibold text-orange-600 mb-4">Your Diet Plan 🍽️</h3>
+          <p><strong>Daily Calories:</strong> <span id="dailyCalories"></span> kcal</p>
+          <p class="text-gray-600 mb-4">Weekly Meal Schedule:</p>
+          <div id="mealSchedule" class="space-y-6"></div>
+          <button id="downloadPlan" class="mt-4 w-full bg-orange-500 text-white py-3 rounded-full font-semibold btn hover:bg-orange-600">Download Plan 📥</button>
+          <div id="downloadError" class="hidden mt-4 p-4 bg-red-100 text-red-700 rounded-lg"></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- About Page -->
+    <section id="about" class="page">
+      <div class="max-w-4xl mx-auto">
+        <h2 class="text-3xl font-bold font-['Playfair_Display'] text-orange-600 mb-6">About NutriVibe 🌱</h2>
+        <p class="text-lg text-gray-600 mb-4">NutriVibe Tracker is your playful companion for mindful eating. We believe every meal is a chance to nourish your body and soul, like planting seeds for a vibrant life!</p>
+        <p class="text-lg text-gray-600 mb-8">Our app makes tracking nutrition fun and intuitive, with personalized diet plans to help you reach your goals. Join us in cultivating a healthier you!</p>
+        <h3 class="text-xl font-semibold text-orange-600 mb-4">Our Team 🍒</h3>
+        <p class="text-gray-600 mb-4">A passionate group of food lovers, designers, and developers dedicated to making healthy eating delightful.</p>
+        <h3 class="text-xl font-semibold text-orange-600 mb-4">Helpful Resources 📚</h3>
+        <p class="text-gray-600 mb-4">Explore these trusted resources to deepen your knowledge about nutrition and healthy eating:</p>
+        <ul class="list-disc pl-6 text-gray-600 mb-8">
+          <li><a href="https://www.myplate.gov/" target="_blank" rel="noopener" class="text-orange-600 hover:underline">MyPlate.gov</a> - USDA's guide to balanced meals and meal planning tools.</li>
+          <li><a href="https://www.hsph.harvard.edu/nutritionsource/" target="_blank" rel="noopener" class="text-orange-600 hover:underline">Harvard Nutrition Source</a> - Evidence-based nutrition advice from Harvard T.H. Chan School of Public Health.</li>
+          <li><a href="https://www.eatright.org/" target="_blank" rel="noopener" class="text-orange-600 hover:underline">Academy of Nutrition and Dietetics</a> - Practical tips and resources for healthy eating from dietitians.</li>
+        </ul>
+        <h3 class="text-xl font-semibold text-orange-600 mb-4">Contact Us 📬</h3>
+        <p class="text-gray-600">Email: hello@nutrivibe.com</p>
+        <p class="text-gray-600">Follow our journey on social media for recipes and tips!</p>
+      </div>
+    </section>
+  </main>
+
+  <!-- Footer -->
+  <footer class="footer p-6 text-white text-center">
+    <p class="mb-2 text-lg">Join our newsletter for fresh recipes! 📩</p>
+    <p>© 2025 NutriVibe Tracker. Bloom with every bite! 🌿</p>
+  </footer>
+
+  <script>
+    const { jsPDF } = window.jspdf;
+    const foodImageInput = document.getElementById('foodImage');
+    const previewImg = document.getElementById('previewImg');
+    const imagePreview = document.getElementById('imagePreview');
+    const analyzeBtn = document.getElementById('analyzeBtn');
+    const nutritionInfo = document.getElementById('nutritionInfo');
+    const caloriesSpan = document.getElementById('calories');
+    const proteinSpan = document.getElementById('protein');
+    const carbsSpan = document.getElementById('carbs');
+    const fatSpan = document.getElementById('fat');
+    const totalCaloriesSpan = document.getElementById('totalCalories');
+    const totalProteinSpan = document.getElementById('totalProtein');
+    const totalCarbsSpan = document.getElementById('totalCarbs');
+    const totalFatSpan = document.getElementById('totalFat');
+    const caloriesProgress = document.getElementById('caloriesProgress');
+    const proteinProgress = document.getElementById('proteinProgress');
+    const carbsProgress = document.getElementById('carbsProgress');
+    const fatProgress = document.getElementById('fatProgress');
+    const motivationDiv = document.getElementById('motivation');
+    const resetProgressBtn = document.getElementById('resetProgress');
+    const mealSuggestion = document.getElementById('mealSuggestion');
+    const vegSuggestion = document.getElementById('vegSuggestion');
+    const nonVegSuggestion = document.getElementById('nonVegSuggestion');
+    const historyList = document.getElementById('historyList');
+    const generatePlanBtn = document.getElementById('generatePlan');
+    const dietPlanDiv = document.getElementById('dietPlan');
+    const dailyCaloriesSpan = document.getElementById('dailyCalories');
+    const mealScheduleDiv = document.getElementById('mealSchedule');
+    const downloadPlanBtn = document.getElementById('downloadPlan');
+    const downloadErrorDiv = document.getElementById('downloadError');
+    const menuToggle = document.getElementById('menuToggle');
+    const mobileMenu = document.getElementById('mobileMenu');
+    const closeMenu = document.getElementById('closeMenu');
+    const navLinks = document.querySelectorAll('.nav-link');
+    const pages = document.querySelectorAll('.page');
+    const formErrors = document.getElementById('formErrors');
+    const currentWeightInput = document.getElementById('currentWeight');
+    const targetWeightInput = document.getElementById('targetWeight');
+    const heightInput = document.getElementById('height');
+    const ageInput = document.getElementById('age');
+    const timelineInput = document.getElementById('timeline');
+    const dietPreferenceInput = document.getElementById('dietPreference');
+    const canonicalLink = document.getElementById('canonicalLink');
+
+    let dailyNutrition = { calories: 0, protein: 0, carbs: 0, fat: 0 };
+    const dailyGoals = { calories: 2000, protein: 100, carbs: 250, fat: 70 };
+    let calorieHistory = JSON.parse(localStorage.getItem('calorieHistory')) || [];
+    let activeDietPlan = null;
+    const motivationalQuotes = [
+      "Each bite is a step toward a healthier you! 🌟",
+      "Nourish your body, and your soul will thank you! 🍓",
+      "Mindful eating is self-love in every bite. 💖",
+      "Grow strong with every colorful meal! 🥗",
+      "Your plate is your canvas—paint it vibrant! 🎨"
+    ];
+    const mealDatabase = {
+      vegetarian: [
+        { name: "Avocado Toast", calories: 250, protein: 8, carbs: 20, fat: 15, type: "breakfast", description: "Whole-grain toast topped with mashed avocado and chia seeds.", image: "https://images.unsplash.com/photo-1482049016688-2d3e1b311543?ixlib=rb-4.0.3&auto=format&fit=crop&w=300&q=80" },
+        { name: "Quinoa Veggie Bowl", calories: 350, protein: 12, carbs: 45, fat: 10, type: "main", description: "Quinoa with roasted vegetables, avocado, and tahini drizzle.", image: "https://images.unsplash.com/photo-1519996529931-28324d5a630e?ixlib=rb-4.0.3&auto=format&fit=crop&w=300&q=80" },
+        { name: "Lentil Soup", calories: 300, protein: 15, carbs: 40, fat: 8, type: "main", description: "Hearty lentil soup with carrots, celery, and spices.", image: "https://images.unsplash.com/photo-1547592180-2f1a1b3c3b65?ixlib=rb-4.0.3&auto=format&fit=crop&w=300&q=80" },
+        { name: "Berry Smoothie", calories: 200, protein: 10, carbs: 30, fat: 5, type: "snack", description: "Blended berries, Greek yogurt, and a touch of honey.", image: "https://images.unsplash.com/photo-1505252585461-04db1eb84625?ixlib=rb-4.0.3&auto=format&fit=crop&w=300&q=80" },
+        { name: "Chickpea Salad", calories: 280, protein: 10, carbs: 35, fat: 12, type: "main", description: "Chickpeas with cucumber, tomatoes, and lemon vinaigrette.", image: "https://images.unsplash.com/photo-1546069901-ba9599a7e63c?ixlib=rb-4.0.3&auto=format&fit=crop&w=300&q=80" },
+        { name: "Banana Oat Pancakes", calories: 220, protein: 7, carbs: 30, fat: 8, type: "breakfast", description: "Pancakes made with oats, banana, and maple syrup.", image: "https://images.unsplash.com/photo-1515036551567-bf1198cccc35?ixlib=rb-4.0.3&auto=format&fit=crop&w=300&q=80" },
+        { name: "Hummus Veggie Wrap", calories: 260, protein: 9, carbs: 38, fat: 10, type: "main", description: "Whole-wheat wrap with hummus, lettuce, and mixed veggies.", image: "https://images.unsplash.com/photo-1611162617210-7d673e1dfd67?ixlib=rb-4.0.3&auto=format&fit=crop&w=300&q=80" },
+        { name: "Mixed Nuts", calories: 180, protein: 5, carbs: 10, fat: 15, type: "snack", description: "A handful of almonds, walnuts, and cashews.", image: "https://images.unsplash.com/photo-1542990253-0d0f5be5f014?ixlib=rb-4.0.3&auto=format&fit=crop&w=300&q=80" },
+        { name: "Greek Yogurt Parfait", calories: 210, protein: 12, carbs: 25, fat: 6, type: "snack", description: "Greek yogurt layered with granola and fresh berries.", image: "https://images.unsplash.com/photo-1594219359266-84ad26024a8e?ixlib=rb-4.0.3&auto=format&fit=crop&w=300&q=80" },
+        { name: "Vegetable Stir-Fry", calories: 290, protein: 8, carbs: 40, fat: 10, type: "main", description: "Mixed vegetables and tofu stir-fried with soy sauce.", image: "https://images.unsplash.com/photo-1600357176508-b2600e324121?ixlib=rb-4.0.3&auto=format&fit=crop&w=300&q=80" },
+        { name: "Caprese Salad", calories: 240, protein: 10, carbs: 15, fat: 15, type: "main", description: "Fresh tomatoes, mozzarella, basil, and balsamic glaze.", image: "https://images.unsplash.com/photo-1594007759130-8551705e6a35?ixlib=rb-4.0.3&auto=format&fit=crop&w=300&q=80" },
+        { name: "Black Bean Tacos", calories: 270, protein: 12, carbs: 35, fat: 8, type: "main", description: "Corn tortillas with black beans, avocado, and salsa.", image: "https://images.unsplash.com/photo-1592995709172-2b66c202229a?ixlib=rb-4.0.3&auto=format&fit=crop&w=300&q=80" }
+      ],
+      nonVegetarian: [
+        { name: "Grilled Chicken Salad", calories: 300, protein: 25, carbs: 15, fat: 10, type: "main", description: "Grilled chicken breast with mixed greens and lemon vinaigrette.", image: "https://images.unsplash.com/photo-1600585154340-be6161a56a0c?ixlib=rb-4.0.3&auto=format&fit=crop&w=300&q=80" },
+        { name: "Turkey Wrap", calories: 320, protein: 20, carbs: 30, fat: 12, type: "main", description: "Turkey slices with lettuce, tomato, and hummus in a wrap.", image: "https://images.unsplash.com/photo-1599120923980-37d7e5a865f9?ixlib=rb-4.0.3&auto=format&fit=crop&w=300&q=80" },
+        { name: "Tuna Salad", calories: 280, protein: 22, carbs: 10, fat: 15, type: "main", description: "Tuna with mixed greens, cucumber, and olive oil dressing.", image: "https://images.unsplash.com/photo-1519708227418-c8fd9a32b7a2?ixlib=rb-4.0.3&auto=format&fit=crop&w=300&q=80" },
+        { name: "Salmon Bowl", calories: 400, protein: 28, carbs: 35, fat: 15, type: "main", description: "Grilled salmon with brown rice and steamed broccoli.", image: "https://images.unsplash.com/photo-1519708227418-c8fd9a32b7a2?ixlib=rb-4.0.3&auto=format&fit=crop&w=300&q=80" },
+        { name: "Chicken Avocado Toast", calories: 270, protein: 15, carbs: 20, fat: 14, type: "breakfast", description: "Whole-grain toast with avocado and grilled chicken slices.", image: "https://images.unsplash.com/photo-1617196034798-1e415ed75866?ixlib=rb-4.0.3&auto=format&fit=crop&w=300&q=80" },
+        { name: "Egg and Bacon Muffin", calories: 290, protein: 18, carbs: 25, fat: 12, type: "breakfast", description: "English muffin with scrambled egg and crispy bacon.", image: "https://images.unsplash.com/photo-1525351326368-efbb5cb6814d?ixlib=rb-4.0.3&auto=format&fit=crop&w=300&q=80" },
+        { name: "Shrimp Stir-Fry", calories: 350, protein: 24, carbs: 30, fat: 12, type: "main", description: "Shrimp with bell peppers and soy sauce over brown rice.", image: "https://images.unsplash.com/photo-1518791841217-8f162f1e1131?ixlib=rb-4.0.3&auto=format&fit=crop&w=300&q=80" },
+        { name: "Greek Yogurt with Honey", calories: 150, protein: 10, carbs: 20, fat: 4, type: "snack", description: "Greek yogurt topped with honey and walnuts.", image: "https://images.unsplash.com/photo-1516846926495-906c73a24d7d?ixlib=rb-4.0.3&auto=format&fit=crop&w=300&q=80" },
+        { name: "Beef and Veggie Skewers", calories: 330, protein: 26, carbs: 15, fat: 14, type: "main", description: "Grilled beef with bell peppers and onions on skewers.", image: "https://images.unsplash.com/photo-1535059899312-7a4aa4a5aa6c?ixlib=rb-4.0.3&auto=format&fit=crop&w=300&q=80" },
+        { name: "Hard-Boiled Egg", calories: 80, protein: 6, carbs: 1, fat: 5, type: "snack", description: "A simple hard-boiled egg for a quick protein boost.", image: "https://images.unsplash.com/photo-1551218372-a8789b81b253?ixlib=rb-4.0.3&auto=format&fit=crop&w=300&q=80" },
+        { name: "Baked Cod with Veggies", calories: 310, protein: 25, carbs: 15, fat: 12, type: "main", description: "Baked cod with roasted zucchini and carrots.", image: "https://images.unsplash.com/photo-1625944525439-2a80b12f1a19?ixlib=rb-4.0.3&auto=format&fit=crop&w=300&q=80" },
+        { name: "Chicken Stir-Fry", calories: 340, protein: 26, carbs: 25, fat: 14, type: "main", description: "Chicken with mixed vegetables in a light soy sauce.", image: "https://images.unsplash.com/photo-1600891964092-4316c288032e?ixlib=rb-4.0.3&auto=format&fit=crop&w=300&q=80" }
+      ],
+      eggVegetarian: [
+        { name: "Veggie Omelette", calories: 240, protein: 15, carbs: 10, fat: 18, type: "breakfast", description: "Egg omelette with spinach, tomatoes, and feta cheese.", image: "https://images.unsplash.com/photo-1612203989859-3e535b4c9a45?ixlib=rb-4.0.3&auto=format&fit=crop&w=300&q=80" },
+        { name: "Egg Salad Wrap", calories: 300, protein: 12, carbs: 25, fat: 15, type: "main", description: "Hard-boiled eggs with lettuce and mayo in a whole-wheat wrap.", image: "https://images.unsplash.com/photo-1490644658840-3f2e3f8c5626?ixlib=rb-4.0.3&auto=format&fit=crop&w=300&q=80" },
+        { name: "Quinoa Veggie Bowl", calories: 350, protein: 12, carbs: 45, fat: 10, type: "main", description: "Quinoa with roasted veggies, avocado, and tahini drizzle.", image: "https://images.unsplash.com/photo-1519996529931-28324d5a630e?ixlib=rb-4.0.3&auto=format&fit=crop&w=300&q=80" },
+        { name: "Berry Smoothie", calories: 200, protein: 10, carbs: 30, fat: 5, type: "snack", description: "Blended berries, Greek yogurt, and a touch of honey.", image: "https://images.unsplash.com/photo-1505252585461-04db1eb84625?ixlib=rb-4.0.3&auto=format&fit=crop&w=300&q=80" },
+        { name: "Egg Avocado Toast", calories: 260, protein: 10, carbs: 22, fat: 16, type: "breakfast", description: "Whole-grain toast with mashed avocado and a boiled egg.", image: "https://images.unsplash.com/photo-1482049016688-2d3e1b311543?ixlib=rb-4.0.3&auto=format&fit=crop&w=300&q=80" },
+        { name: "Spinach Feta Scramble", calories: 230, protein: 14, carbs: 8, fat: 17, type: "breakfast", description: "Scrambled eggs with spinach and crumbled feta cheese.", image: "https://images.unsplash.com/photo-1612203989859-3e535b4c9a45?ixlib=rb-4.0.3&auto=format&fit=crop&w=300&q=80" },
+        { name: "Lentil Veggie Soup", calories: 310, protein: 16, carbs: 42, fat: 9, type: "main", description: "Lentil soup with mixed vegetables and fresh herbs.", image: "https://images.unsplash.com/photo-1547592180-2f1a1b3c3b65?ixlib=rb-4.0.3&auto=format&fit=crop&w=300&q=80" },
+        { name: "Apple Slices with Peanut Butter", calories: 190, protein: 6, carbs: 20, fat: 10, type: "snack", description: "Fresh apple slices with a spread of peanut butter.", image: "https://images.unsplash.com/photo-1600585154340-be6161a56a0c?ixlib=rb-4.0.3&auto=format&fit=crop&w=300&q=80" },
+        { name: "Egg and Veggie Muffin", calories: 250, protein: 13, carbs: 20, fat: 12, type: "breakfast", description: "Egg muffin with spinach and bell peppers.", image: "https://images.unsplash.com/photo-1525351326368-efbb5cb6814d?ixlib=rb-4.0.3&auto=format&fit=crop&w=300&q=80" },
+        { name: "Greek Yogurt Parfait", calories: 210, protein: 12, carbs: 25, fat: 6, type: "snack", description: "Greek yogurt layered with granola and fresh berries.", image: "https://images.unsplash.com/photo-1594219359266-84ad26024a8e?ixlib=rb-4.0.3&auto=format&fit=crop&w=300&q=80" },
+        { name: "Egg Fried Rice", calories: 340, protein: 14, carbs: 45, fat: 12, type: "main", description: "Fried rice with scrambled eggs and mixed vegetables.", image: "https://images.unsplash.com/photo-1512058564366-18594f6a6c90?ixlib=rb-4.0.3&auto=format&fit=crop&w=300&q=80" },
+        { name: "Hard-Boiled Egg with Veggies", calories: 120, protein: 7, carbs: 10, fat: 6, type: "snack", description: "Hard-boiled egg with carrot and cucumber sticks.", image: "https://images.unsplash.com/photo-1551218372-a8789b81b253?ixlib=rb-4.0.3&auto=format&fit=crop&w=300&q=80" },
+        { name: "Egg and Cheese Bagel", calories: 300, protein: 15, carbs: 35, fat: 10, type: "breakfast", description: "Toasted bagel with scrambled eggs and cheddar cheese.", image: "https://images.unsplash.com/photo-1525351326368-efbb5cb6814d?ixlib=rb-4.0.3&auto=format&fit=crop&w=300&q=80" },
+        { name: "Zucchini Egg Bake", calories: 280, protein: 16, carbs: 12, fat: 18, type: "main", description: "Baked eggs with zucchini, tomatoes, and parmesan.", image: "https://images.unsplash.com/photo-1594044226760-22c2409c6b34?ixlib=rb-4.0.3&auto=format&fit=crop&w=300&q=80" }
+      ]
+    };
+    const mealSuggestions = [
+      {
+        vegetarian: mealDatabase.vegetarian[0],
+        nonVegetarian: mealDatabase.nonVegetarian[0],
+        condition: (nutrition) => nutrition.carbs > 200
+      },
+      {
+        vegetarian: mealDatabase.vegetarian[1],
+        nonVegetarian: mealDatabase.nonVegetarian[1],
+        condition: (nutrition) => nutrition.protein < 50
+      },
+      {
+        vegetarian: mealDatabase.vegetarian[2],
+        nonVegetarian: mealDatabase.nonVegetarian[2],
+        condition: (nutrition) => nutrition.calories < 1000
+      },
+      {
+        vegetarian: mealDatabase.vegetarian[3],
+        nonVegetarian: mealDatabase.nonVegetarian[3],
+        condition: () => true
+      }
+    ];
+    const dailyTips = [
+      "Stay hydrated by drinking 8-10 glasses of water daily to support metabolism. 💧",
+      "Use smaller plates to naturally control portion sizes without feeling deprived. 🍽️",
+      "Incorporate a variety of colorful veggies to ensure a range of nutrients. 🥕",
+      "Plan meals ahead to avoid impulsive eating and stick to your goals. 📅",
+      "Chew slowly to enhance digestion and enjoy every bite mindfully. 😋",
+      "Swap sugary snacks for fruits to satisfy cravings healthily. 🍎",
+      "Add a handful of nuts for healthy fats and sustained energy. 🥜"
+    ];
+
+    // Navigation with Canonical URL Update
+    function showPage(pageId) {
+      pages.forEach(page => page.classList.remove('page-active'));
+      document.getElementById(pageId).classList.add('page-active');
+      mobileMenu.classList.remove('nav-menu-active');
+
+      // Update canonical URL and Open Graph URL
+      const baseUrl = 'https://www.nutrivibetracker.com';
+      let canonicalUrl;
+      let ogTitle;
+      let ogDescription;
+      switch (pageId) {
+        case 'home':
+          canonicalUrl = `${baseUrl}/`;
+          ogTitle = "NutriVibe Tracker - Your Nutrition Journey Starts Here";
+          ogDescription = "Track your meals, create personalized diet plans, and cultivate a vibrant, healthy life with NutriVibe Tracker.";
+          break;
+        case 'tracker':
+          canonicalUrl = `${baseUrl}/tracker`;
+          ogTitle = "NutriVibe Tracker - Diet Tracker";
+          ogDescription = "Track your daily nutrition, analyze meals, and get personalized meal suggestions with NutriVibe's Diet Tracker.";
+          break;
+        case 'diet-plan':
+          canonicalUrl = `${baseUrl}/diet-plan`;
+          ogTitle = "NutriVibe Tracker - Personalized Diet Plan";
+          ogDescription = "Create a personalized diet plan tailored to your goals and preferences with NutriVibe Tracker.";
+          break;
+        case 'about':
+          canonicalUrl = `${baseUrl}/about`;
+          ogTitle = "NutriVibe Tracker - About Us";
+          ogDescription = "Learn about NutriVibe Tracker, your companion for mindful eating and a healthier lifestyle.";
+          break;
+        default:
+          canonicalUrl = `${baseUrl}/`;
+          ogTitle = "NutriVibe Tracker - Your Nutrition Journey Starts Here";
+          ogDescription = "Track your meals, create personalized diet plans, and cultivate a vibrant, healthy life with NutriVibe Tracker.";
+      }
+      canonicalLink.href = canonicalUrl;
+      document.querySelector('meta[property="og:url"]').content = canonicalUrl;
+      document.querySelector('meta[property="og:title"]').content = ogTitle;
+      document.querySelector('meta[property="og:description"]').content = ogDescription;
+    }
+
+    navLinks.forEach(link => {
+      link.addEventListener('click', (e) => {
+        e.preventDefault();
+        const pageId = link.getAttribute('data-page');
+        showPage(pageId);
+      });
+    });
+
+    menuToggle.addEventListener('click', () => {
+      mobileMenu.classList.add('nav-menu-active');
+    });
+
+    closeMenu.addEventListener('click', () => {
+      mobileMenu.classList.remove('nav-menu-active');
+    });
+
+    // Update Calorie History
+    function updateHistory() {
+      historyList.innerHTML = '';
+      calorieHistory.forEach((entry, index) => {
+        const div = document.createElement('div');
+        div.className = 'history-item p-2 rounded bg-gray-100';
+        div.textContent = `${entry.date}: ${entry.calories} kcal`;
+        historyList.appendChild(div);
+      });
+    }
+
+    // Calculate BMR using Mifflin-St Jeor Equation
+    function calculateBMR(weight, height, age, gender = 'male') {
+      return 10 * weight + 6.25 * height - 5 * age + 5; // Assuming male for simplicity
+    }
+
+    // Validate Form Inputs
+    function validateInputs() {
+      let isValid = true;
+      const errors = {};
+
+      // Reset error messages
+      document.querySelectorAll('.error-message').forEach(el => el.classList.add('hidden'));
+      formErrors.classList.add('hidden');
+
+      const currentWeight = parseFloat(currentWeightInput.value);
+      const targetWeight = parseFloat(targetWeightInput.value);
+      const height = parseFloat(heightInput.value);
+      const age = parseInt(ageInput.value);
+      const timeline = parseInt(timelineInput.value);
+      const dietPreference = dietPreferenceInput.value;
+
+      if (isNaN(currentWeight) || currentWeight <= 0) {
+        errors.currentWeight = "Please enter a valid current weight (positive number).";
+        document.getElementById('currentWeightError').textContent = errors.currentWeight;
+        document.getElementById('currentWeightError').classList.remove('hidden');
+        isValid = false;
+      }
+
+      if (isNaN(targetWeight) || targetWeight <= 0) {
+        errors.targetWeight = "Please enter a valid target weight (positive number).";
+        document.getElementById('targetWeightError').textContent = errors.targetWeight;
+        document.getElementById('targetWeightError').classList.remove('hidden');
+        isValid = false;
+      } else if (targetWeight >= currentWeight) {
+        errors.targetWeight = "Target weight must be less than current weight.";
+        document.getElementById('targetWeightError').textContent = errors.targetWeight;
+        document.getElementById('targetWeightError').classList.remove('hidden');
+        isValid = false;
+      }
+
+      if (isNaN(height) || height <= 0) {
+        errors.height = "Please enter a valid height (positive number).";
+        document.getElementById('heightError').textContent = errors.height;
+        document.getElementById('heightError').classList.remove('hidden');
+        isValid = false;
+      }
+
+      if (isNaN(age) || age <= 0) {
+        errors.age = "Please enter a valid age (positive number).";
+        document.getElementById('ageError').textContent = errors.age;
+        document.getElementById('ageError').classList.remove('hidden');
+        isValid = false;
+      }
+
+      if (isNaN(timeline) || timeline <= 0) {
+        errors.timeline = "Please enter a valid timeline (positive number).";
+        document.getElementById('timelineError').textContent = errors.timeline;
+        document.getElementById('timelineError').classList.remove('hidden');
+        isValid = false;
+      }
+
+      if (!dietPreference) {
+        errors.dietPreference = "Please select a diet preference.";
+        document.getElementById('dietPreferenceError').textContent = errors.dietPreference;
+        document.getElementById('dietPreferenceError').classList.remove('hidden');
+        isValid = false;
+      }
+
+      if (!isValid) {
+        formErrors.textContent = "Please correct the errors below to generate your diet plan.";
+        formErrors.classList.remove('hidden');
+      }
+
+      return { isValid, currentWeight, targetWeight, height, age, timeline, dietPreference };
+    }
+
+    // Preload Images with Timeout and Fallback
+    async function preloadImages(images) {
+      const promises = Array.from(images).map(img => {
+        return new Promise((resolve) => {
+          const tempImg = new Image();
+          tempImg.crossOrigin = "anonymous";
+          tempImg.src = img.src;
+          const timeout = setTimeout(() => {
+            console.warn(`Image load timeout: ${img.src} for meal ${img.alt}`);
+            img.src = 'https://images.unsplash.com/photo-1490730141103-6fd006c2301e?ixlib=rb-4.0.3&auto=format&fit=crop&w=300&q=80';
+            resolve();
+          }, 5000); // 5-second timeout
+          tempImg.onload = () => {
+            clearTimeout(timeout);
+            resolve();
+          };
+          tempImg.onerror = () => {
+            clearTimeout(timeout);
+            console.warn(`Failed to load image: ${img.src} for meal ${img.alt}, using fallback`);
+            img.src = 'https://images.unsplash.com/photo-1490730141103-6fd006c2301e?ixlib=rb-4.0.3&auto=format&fit=crop&w=300&q=80';
+            resolve();
+          };
+        });
+      });
+      try {
+        await Promise.all(promises);
+      } catch (error) {
+        console.error('Image preloading failed:', error);
+        throw new Error('Failed to preload images');
+      }
+    }
+
+    // Generate Diet Plan
+    generatePlanBtn.addEventListener('click', async () => {
+      const { isValid, currentWeight, targetWeight, height, age, timeline, dietPreference } = validateInputs();
+
+      if (!isValid) {
+        return;
+      }
+
+      generatePlanBtn.disabled = true;
+      generatePlanBtn.textContent = "Generating Plan...";
+
+      try {
+        // Calculate weight loss per week
+        const weightLoss = currentWeight - targetWeight;
+        const weeks = timeline * 4; // Convert months to weeks
+        const weeklyLoss = weightLoss / weeks; // Aim for 0.5-1 kg per week
+        const dailyDeficit = weeklyLoss * 7700 / 7; // 7700 kcal per kg
+
+        // Calculate daily calorie needs
+        const bmr = calculateBMR(currentWeight, height, age);
+        const activityFactor = 1.5; // Moderate activity
+        let dailyCalories = Math.round(bmr * activityFactor - dailyDeficit);
+        dailyCalories = Math.max(dailyCalories, 1200); // Minimum safe calories
+
+        // Generate meal plan with unique meals
+        const meals = mealDatabase[dietPreference];
+        const plan = [];
+        const days = ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday'];
+
+        // Helper to get a random meal
+        function getRandomMeal(type, excludeNames) {
+          const filteredMeals = meals.filter(m => m.type === type && !excludeNames.includes(m.name));
+          return filteredMeals.length > 0 ? filteredMeals[Math.floor(Math.random() * filteredMeals.length)] : meals[Math.floor(Math.random() * meals.length)];
+        }
+
+        days.forEach(() => {
+          const usedNames = [];
+          
+          const breakfast = getRandomMeal('breakfast', usedNames);
+          usedNames.push(breakfast.name);
+          console.log(`Assigned Breakfast: ${breakfast.name} with image ${breakfast.image}`);
+
+          const lunch = getRandomMeal('main', usedNames);
+          usedNames.push(lunch.name);
+          console.log(`Assigned Lunch: ${lunch.name} with image ${lunch.image}`);
+
+          const dinner = getRandomMeal('main', usedNames);
+          usedNames.push(dinner.name);
+          console.log(`Assigned Dinner: ${dinner.name} with image ${dinner.image}`);
+
+          const snack = getRandomMeal('snack', usedNames);
+          usedNames.push(snack.name);
+          console.log(`Assigned Snack: ${snack.name} with image ${snack.image}`);
+
+          plan.push({ breakfast, lunch, dinner, snack });
+        });
+
+        // Adjust meal calories to fit daily target
+        plan.forEach(day => {
+          let totalCalories = day.breakfast.calories + day.lunch.calories + day.dinner.calories + day.snack.calories;
+          const factor = dailyCalories / totalCalories;
+          day.breakfast.calories = Math.round(day.breakfast.calories * factor);
+          day.lunch.calories = Math.round(day.lunch.calories * factor);
+          day.dinner.calories = Math.round(day.dinner.calories * factor);
+          day.snack.calories = Math.round(day.snack.calories * factor);
+        });
+
+        // Store plan
+        activeDietPlan = { dailyCalories, plan, dietPreference };
+
+        // Display plan
+        dailyCaloriesSpan.textContent = dailyCalories;
+        mealScheduleDiv.innerHTML = '';
+        days.forEach((day, index) => {
+          const dayDiv = document.createElement('div');
+          dayDiv.className = 'mb-6';
+          dayDiv.innerHTML = `
+            <h4 class="text-lg font-semibold text-orange-600 mb-2">${day}</h4>
+            <div class="grid md:grid-cols-2 gap-4">
+              <div class="flex items-center">
+                <img src="${plan[index].breakfast.image}" alt="${plan[index].breakfast.name}" class="meal-image mr-4" onerror="this.src='https://images.unsplash.com/photo-1490730141103-6fd006c2301e?ixlib=rb-4.0.3&auto=format&fit=crop&w=300&q=80'">
+                <div>
+                  <p><strong>Breakfast:</strong> ${plan[index].breakfast.name} (${plan[index].breakfast.calories} kcal)</p>
+                  <p class="text-gray-600 text-sm">${plan[index].breakfast.description}</p>
+                </div>
+              </div>
+              <div class="flex items-center">
+                <img src="${plan[index].lunch.image}" alt="${plan[index].lunch.name}" class="meal-image mr-4" onerror="this.src='https://images.unsplash.com/photo-1490730141103-6fd006c2301e?ixlib=rb-4.0.3&auto=format&fit=crop&w=300&q=80'">
+                <div>
+                  <p><strong>Lunch:</strong> ${plan[index].lunch.name} (${plan[index].lunch.calories} kcal)</p>
+                  <p class="text-gray-600 text-sm">${plan[index].lunch.description}</p>
+                </div>
+              </div>
+              <div class="flex items-center">
+                <img src="${plan[index].dinner.image}" alt="${plan[index].dinner.name}" class="meal-image mr-4" onerror="this.src='https://images.unsplash.com/photo-1490730141103-6fd006c2301e?ixlib=rb-4.0.3&auto=format&fit=crop&w=300&q=80'">
+                <div>
+                  <p><strong>Dinner:</strong> ${plan[index].dinner.name} (${plan[index].dinner.calories} kcal)</p>
+                  <p class="text-gray-600 text-sm">${plan[index].dinner.description}</p>
+                </div>
+              </div>
+              <div class="flex items-center">
+                <img src="${plan[index].snack.image}" alt="${plan[index].snack.name}" class="meal-image mr-4" onerror="this.src='https://images.unsplash.com/photo-1490730141103-6fd006c2301e?ixlib=rb-4.0.3&auto=format&fit=crop&w=300&q=80'">
+                <div>
+                  <p><strong>Snack:</strong> ${plan[index].snack.name} (${plan[index].snack.calories} kcal)</p>
+                  <p class="text-gray-600 text-sm">${plan[index].snack.description}</p>
+                </div>
+              </div>
+            </div>
+            <div class="tips-section mt-4">
+              <h5 class="text-md font-semibold text-green-600">Tips & Tricks 🍃</h5>
+              <p class="text-gray-600">${dailyTips[index]}</p>
+            </div>
+          `;
+          mealScheduleDiv.appendChild(dayDiv);
+        });
+
+        // Preload images after rendering
+        const images = dietPlanDiv.querySelectorAll('img');
+        await preloadImages(images);
+
+        dietPlanDiv.classList.remove('hidden');
+        formErrors.classList.add('hidden');
+        downloadErrorDiv.classList.add('hidden');
+        alert('Diet plan generated successfully!');
+      } catch (error) {
+        console.error('Error generating diet plan:', error);
+        formErrors.textContent = "An error occurred while generating the plan. Please try again.";
+        formErrors.classList.remove('hidden');
+      } finally {
+        generatePlanBtn.disabled = false;
+        generatePlanBtn.textContent = "Generate Diet Plan 🌿";
+      }
+    });
+
+    // Download Diet Plan as PDF
+    downloadPlanBtn.addEventListener('click', async () => {
+      if (!activeDietPlan) {
+        alert('Please generate a diet plan first.');
+        return;
+      }
+
+      downloadPlanBtn.disabled = true;
+      downloadPlanBtn.textContent = "Preparing Download...";
+      downloadErrorDiv.classList.add('hidden');
+
+      try {
+        // Preload images
+        const images = dietPlanDiv.querySelectorAll('img');
+        await preloadImages(images);
+
+        // Temporarily adjust styles for PDF rendering
+        dietPlanDiv.style.width = '800px'; // Fixed width for better PDF layout
+        dietPlanDiv.style.padding = '20px';
+        dietPlanDiv.style.background = '#ffffff';
+
+        const element = dietPlanDiv;
+        const canvas = await html2canvas(element, {
+          scale: 2, // Reduced scale for better performance
+          useCORS: true,
+          logging: false,
+          windowWidth: 800, // Match the fixed width
+          width: 800,
+          backgroundColor: '#ffffff',
+          scrollX: 0,
+          scrollY: 0
+        });
+
+        const imgData = canvas.toDataURL('image/png', 1.0);
+        const pdf = new jsPDF({
+          orientation: 'portrait',
+          unit: 'mm',
+          format: 'a4'
+        });
+
+        const imgWidth = 190; // Width in mm
+        const pageHeight = 297; // A4 height in mm
+        const imgHeight = canvas.height * imgWidth / canvas.width;
+        let heightLeft = imgHeight;
+        let position = 10;
+
+        pdf.addImage(imgData, 'PNG', 10, position, imgWidth, imgHeight, '', 'FAST');
+        heightLeft -= (pageHeight - 20); // Account for margins
+
+        while (heightLeft > 0) {
+          pdf.addPage();
+          position = -heightLeft + 10;
+          pdf.addImage(imgData, 'PNG', 10, position, imgWidth, imgHeight, '', 'FAST');
+          heightLeft -= (pageHeight - 20);
+        }
+
+        pdf.save('NutriVibe_Diet_Plan.pdf');
+      } catch (error) {
+        console.error('PDF generation failed:', error);
+        downloadErrorDiv.textContent = error.message === 'Failed to preload images' ? "Failed to load meal images. Please try again." : "Failed to download the plan. Please check your network or try again.";
+        downloadErrorDiv.classList.remove('hidden');
+      } finally {
+        // Reset styles
+        dietPlanDiv.style.width = '';
+        dietPlanDiv.style.padding = '';
+        dietPlanDiv.style.background = '';
+        downloadPlanBtn.disabled = false;
+        downloadPlanBtn.textContent = "Download Plan 📥";
+      }
+    });
+
+    // Tracker Functionality
+    foodImageInput.addEventListener('change', (e) => {
+      const file = e.target.files[0];
+      if (file) {
+        const reader = new FileReader();
+        reader.onload = (event) => {
+          previewImg.src = event.target.result;
+          imagePreview.classList.remove('hidden');
+          analyzeBtn.disabled = false;
+        };
+        reader.readAsDataURL(file);
+      }
+    });
+
+    analyzeBtn.addEventListener('click', () => {
+      const timeFactor = Math.log(Date.now() % 10000 + 1) / Math.log(10000);
+      const base = (Math.random() * 100 + 50) * (1 + timeFactor);
+      const calories = Math.round(base * (Math.cos(timeFactor) + 1.5));
+      const protein = Math.round((base / 3) * Math.random());
+      const carbs = Math.round((base / 2.5) * Math.random());
+      const fat = Math.round((base / 4) * Math.random());
+
+      caloriesSpan.textContent = calories;
+      proteinSpan.textContent = protein;
+      carbsSpan.textContent = carbs;
+      fatSpan.textContent = fat;
+      nutritionInfo.classList.remove('hidden');
+
+      dailyNutrition.calories += calories;
+      dailyNutrition.protein += protein;
+      dailyNutrition.carbs += carbs;
+      dailyNutrition.fat += fat;
+
+      // Update history
+      const today = new Date().toLocaleDateString();
+      const existingEntry = calorieHistory.find(entry => entry.date === today);
+      if (existingEntry) {
+        existingEntry.calories = dailyNutrition.calories;
+      } else {
+        calorieHistory.push({ date: today, calories: dailyNutrition.calories });
+      }
+      localStorage.setItem('calorieHistory', JSON.stringify(calorieHistory));
+      updateHistory();
+
+      updateDailySummary();
+
+      // Meal Suggestions
+      const suggestion = mealSuggestions.find(s => s.condition(dailyNutrition)) || mealSuggestions[mealSuggestions.length - 1];
+      vegSuggestion.textContent = `${suggestion.vegetarian.name}: ${suggestion.vegetarian.description}`;
+      nonVegSuggestion.textContent = `${suggestion.nonVegetarian.name}: ${suggestion.nonVegetarian.description}`;
+      mealSuggestion.classList.remove('hidden');
+
+      motivationDiv.textContent = motivationalQuotes[Math.floor(Math.random() * motivationalQuotes.length)];
+
+      foodImageInput.value = '';
+      imagePreview.classList.add('hidden');
+      analyzeBtn.disabled = true;
+    });
+
+    resetProgressBtn.addEventListener('click', () => {
+      dailyNutrition = { calories: 0, protein: 0, carbs: 0, fat: 0 };
+      updateDailySummary();
+      motivationDiv.textContent = "A fresh harvest awaits! Start tracking today’s bites! 🌈";
+      nutritionInfo.classList.add('hidden');
+      mealSuggestion.classList.add('hidden');
+    });
+
+    function updateDailySummary() {
+      totalCaloriesSpan.textContent = dailyNutrition.calories;
+      totalProteinSpan.textContent = dailyNutrition.protein;
+      totalCarbsSpan.textContent = dailyNutrition.carbs;
+      totalFatSpan.textContent = dailyNutrition.fat;
+
+      caloriesProgress.style.width = `${Math.min((dailyNutrition.calories / dailyGoals.calories) * 100, 100)}%`;
+      proteinProgress.style.width = `${Math.min((dailyNutrition.protein / dailyGoals.protein) * 100, 100)}%`;
+      carbsProgress.style.width = `${Math.min((dailyNutrition.carbs / dailyGoals.carbs) * 100, 100)}%`;
+      fatProgress.style.width = `${Math.min((dailyNutrition.fat / dailyGoals.fat) * 100, 100)}%`;
+    }
+
+    // Initialize history
+    updateHistory();
+  </script>
+</body>
+</html>
